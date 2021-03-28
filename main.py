@@ -4,6 +4,8 @@ import math
 #from pygame import mixer
 pygame.init()
 
+#just testing github here. 
+
 screen = pygame.display.set_mode((800,600))
 background = pygame.image.load('background.png')
 pygame.mixer.music.load("background.wav")
