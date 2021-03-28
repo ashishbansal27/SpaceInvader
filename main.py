@@ -1,10 +1,16 @@
 import pygame
 import random
 import math
+#from pygame import mixer
 pygame.init()
 
 screen = pygame.display.set_mode((800,600))
 background = pygame.image.load('background.png')
+pygame.mixer.music.load("background.wav")
+pygame.mixer.music.play(-1)
+# mixer.music.load("background.wav")
+# mixer.music.play(-1)
+
 pygame.display.set_caption("Space Invader")
 icon = pygame.image.load('ufo.png')
 pygame.display.set_icon(icon)
@@ -101,6 +107,8 @@ while running:
 
             if event.key==pygame.K_SPACE:
                 if bullet_state is "Ready":
+                    bullet_sound = pygame.mixer.Sound('laser.wav')
+                    bullet_sound.play()
                     
                     bulletX = playerX
                     fire_bullet(bulletX, bulletY)
@@ -135,6 +143,8 @@ while running:
 
         collision = isCollision(enemyX[i],enemyY[i], bulletX, bulletY)
         if collision:
+            explosion_sound = pygame.mixer.Sound('explosion.wav')
+            explosion_sound.play()
             bulletY = 480
             bullet_state="Ready"
             score += 1
